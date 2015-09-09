@@ -116,7 +116,7 @@ main(int argc, char *argv[])
     int *array;
     unsigned nbytes;
 
-    int max_array_len = 8388608;
+    int max_array_len = (1 << 25);
 
     if (argc != 2) {
         printf("usage: %s <stride>\n", argv[0]);
@@ -131,7 +131,7 @@ main(int argc, char *argv[])
     }
 
     for (array_len = 512; array_len <= max_array_len; array_len <<= 1) {
-        num_passes = 134217728 / array_len;
+        num_passes = (1 << 27) / array_len;
         for (i = 0; i < array_len; i++) {
             array[i] = i;
         }
