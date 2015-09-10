@@ -4,6 +4,7 @@
 #include <sys/resource.h>
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 
 
 typedef struct time_snapshot_ {
@@ -13,19 +14,23 @@ typedef struct time_snapshot_ {
 } time_snapshot_t;
 
 
-int get_time_snapshot (time_snapshot_t *time_snapshot)
+void get_time_snapshot (time_snapshot_t *time_snapshot)
 {
     struct rusage r;
     int ret_val;
 
     ret_val = getrusage(RUSAGE_SELF, &r);
     if (ret_val != 0) {
-        // ACLQOS_ERR(0, 0, "getrusage failed, err %d", errno);
-        return ret_val;
+        printf("getrusage failed, err %d", errno);
+        exit(1);
     }
     memcpy(&(time_snapshot->user_time), &(r.ru_utime), sizeof(struct timeval));
     memcpy(&(time_snapshot->sys_time), &(r.ru_stime), sizeof(struct timeval));
-    return gettimeofday(&(time_snapshot->wall_clock_time), 0);
+    ret_val = gettimeofday(&(time_snapshot->wall_clock_time), 0);
+    if (ret_val != 0) {
+        printf("gettimeofday failed, err %d", errno);
+        exit(1);
+    }
 }
 
 
