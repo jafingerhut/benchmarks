@@ -150,6 +150,6 @@ main(int argc, char *argv[])
                wall_clock_time_usec,
                user_time_usec,
                sys_time_usec,
-               sum, sizeof(int));
+               sum, (unsigned long) sizeof(int));
     }
 }
