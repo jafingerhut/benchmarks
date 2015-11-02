@@ -133,8 +133,8 @@ process_array (int array[], int array_len, int num_passes, int stride)
     for (tmp = stride; tmp != 1; tmp >>= 1) {
         ++mask_width;
     }
-    printf("dbg: array_len=%d stride=%d num_strides=%u mask=%u mask_width=%u\n",
-           array_len, stride, num_strides, mask, mask_width);
+    //printf("dbg: array_len=%d stride=%d num_strides=%u mask=%u mask_width=%u\n",
+    //       array_len, stride, num_strides, mask, mask_width);
     rand_state = init_lcg_state();
 
     for (pass = 0; pass < num_passes; pass++) {
