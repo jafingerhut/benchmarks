@@ -1,7 +1,7 @@
 #! /bin/bash
 
-basename=mbp10,1
-DIR=.
+basename=mac
+DIR=$(pwd)
 
 set -x
 system_profiler > ${basename}-system_profiler-out.txt

@@ -1,8 +1,7 @@
 #! /bin/bash
 
 basename=linux
-DIR=/lc/isan/bin
-
+DIR=$(pwd)
 set -x
 cat /proc/cpuinfo > ${basename}-cpuinfo.txt
 cat /proc/meminfo > ${basename}-meminfo.txt
